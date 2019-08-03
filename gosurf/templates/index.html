@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block body %}
+
+ <div class="col-md-12">
+
+  <div class="container">
+    <h2>🌊Surf near NYC🌊</h2>
+  </div>
+
+    <table id="table" class="table-striped compact" style="width:100%">
+      <thead>
+        <tr>
+            <th>Spot</th>
+            <th>Drive Time</th>
+            {% for day in days %}
+              <th>{{ day }}</th>
+            {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr>
+            <td><a href="https://www" target="_blank" rel="noopener noreferrer">Bethany Beach</a></td>
+            <td>4.07</td>
+            <td class="good-to-epic">100</td>
+            <td class="epic">100</td>
+            <td>35</td>
+          </tr>
+
+        {% for spot in spots %}
+          <tr>
+            <td><a href="{{ spot['url'] }}" target="_blank" rel="noopener noreferrer">{{ spot['name'] }}</a></td>
+            <td>{{ spot['duration'] }}</td>
+            {% for score in spot['scores'] %}
+              <td>{{ score }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#table').DataTable( {
+      "info": false,
+      "searching": false,
+      "paging":   false,
+      "order": [[ 2, 'desc' ], [ 1, 'asc' ]],
+    } );
+} );
+</script>
+
+{% endblock %}

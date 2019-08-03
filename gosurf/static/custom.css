@@ -1,0 +1,47 @@
+.table-striped > tbody > tr:nth-child(odd) > td.lola {
+  background-color:#036;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td.none {
+  background-color:#96A9B2;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td.flat {
+  background-color:#a9a9a9;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td.very-poor {
+  background-color:#42A5FC;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td.poor {
+  background-color:#42A5FC;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td.poor-to-fair {
+  background-color:#42A5FC;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td.fair {
+  background-color:#23D737;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td.fair-to-good {
+  background-color:#23D737;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td.good {
+  background-color:#FFBE00;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td.very-good {
+  background-color:#FFBE00;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td.good-to-epic {
+  background-color:#FFBE00;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td.epic {
+  background-color:red;
+}
