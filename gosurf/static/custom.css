@@ -1,47 +1,104 @@
-.table-striped > tbody > tr:nth-child(odd) > td.lola {
-  background-color:#036;
+.lola {
+    background-color: #036;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td.none {
-  background-color:#96A9B2;
+.flat {
+    background-color: #a9a9a9;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td.flat {
-  background-color:#a9a9a9;
+.very_poor {
+    background-color: #42A5FC;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td.very-poor {
-  background-color:#42A5FC;
+.poor {
+    background-color: #42A5FC;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td.poor {
-  background-color:#42A5FC;
+.poor_to_fair {
+    background-color: #42A5FC;
+    color: white;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td.poor-to-fair {
-  background-color:#42A5FC;
+.fair {
+    background-color: #23D737;
+    color: white;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td.fair {
-  background-color:#23D737;
+.fair_to_good {
+    background-color: #23D737;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td.fair-to-good {
-  background-color:#23D737;
+.good {
+    background-color: #FFBE00;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td.good {
-  background-color:#FFBE00;
+.very_good {
+    background-color: #FFBE00;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td.very-good {
-  background-color:#FFBE00;
+.good_to_epic {
+    background-color: #FFBE00;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td.good-to-epic {
-  background-color:#FFBE00;
+.epic {
+    background-color: red;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td.epic {
-  background-color:red;
-}
+
+
+
+
+/* .table-striped > tbody > tr:nth-child(n) > td.lola { */
+/*   background-color:#036; */
+/*   color: white; */
+/* } */
+
+/* .table-striped > tbody > tr:nth-child(n) > td.flat { */
+/*   background-color:#a9a9a9; */
+/*   color: white; */
+/* } */
+
+/* .table-striped > tbody > tr:nth-child(n) > td.very_poor { */
+/*   background-color:#42A5FC; */
+/*   color: white; */
+/* } */
+
+/* .table-striped > tbody > tr:nth-child(n) > td.poor { */
+/*   background-color:#42A5FC; */
+/*   color: white; */
+/* } */
+
+/* .table-striped > tbody > tr:nth-child(n) > td.poor_to_fair { */
+/*   background-color:#42A5FC; */
+/*   /1* color: #42A5FC; *1/ */
+/* } */
+
+/* .table-striped > tbody > tr:nth-child(n) > td.fair { */
+/*   background-color:#23D737; */
+/*   color: white; */
+/* } */
+
+/* .table-striped > tbody > tr:nth-child(n) > td.fair_to_good { */
+/*   background-color:#23D737; */
+/*   color: white; */
+/* } */
+
+/* .table-striped > tbody > tr:nth-child(n) > td.good { */
+/*   background-color:#FFBE00; */
+/*   color: white; */
+/* } */
+
+/* .table-striped > tbody > tr:nth-child(n) > td.very_good { */
+/*   background-color:#FFBE00; */
+/*   color: white; */
+/* } */
+
+/* .table-striped > tbody > tr:nth-child(n) > td.good_to_epic { */
+/*   background-color:#FFBE00; */
+/*   color: white; */
+/* } */
+
+/* .table-striped > tbody > tr:nth-child(n) > td.epic { */
+/*   background-color:red; */
+/*   color: white; */
+/* } */

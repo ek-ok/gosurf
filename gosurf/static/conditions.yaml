@@ -1,0 +1,71 @@
+id_to_score:
+    null:
+        score: 0
+        text: LOLA
+    LOLA:
+        score: 0
+        text: Lola
+    FLAT:
+        score: 1
+        text: Flat
+    VERY_POOR:
+        score: 2
+        text: Very Poor
+    POOR:
+        score: 3
+        text: Poor
+    POOR_TO_FAIR:
+        score: 4
+        text: Poor fair
+    FAIR:
+        score: 5
+        text: LOLA
+    FAIR_TO_GOOD:
+        score: 6
+        text: Fair good
+    GOOD:
+        score: 7
+        text: Good
+    VERY_GOOD:
+        score: 8
+        text: Very good
+    GOOD_TO_EPIC:
+        score: 9
+        text: Good epic
+    EPIC:
+        score: 10
+        text: Epic
+score_to_id:
+    0:
+        _id: LOLA
+        text: Lola
+    1:
+        _id: FLAT
+        text: Flat
+    2:
+        _id: VERY_POOR
+        text: Very Poor
+    3:
+        _id: POOR
+        text: Poor
+    4:
+        _id: POOR_TO_FAIR
+        text: Poor fair
+    5:
+        _id: FAIR
+        text: Fair
+    6:
+        _id: FAIR_TO_GOOD
+        text: Fair good
+    7:
+        _id: GOOD
+        text: Good
+    8:
+        _id: VERY_GOOD
+        text: Very good
+    9:
+        _id: GOOD_TO_EPIC
+        text: Good epic
+    10:
+        _id: EPIC
+        text: Epic
