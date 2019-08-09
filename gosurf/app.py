@@ -1,6 +1,11 @@
 import json
-import time
 from datetime import datetime
+import decimal
+
+from requests import Session
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+from requests.utils import urlparse
 
 import grequests
 import pandas as pd
@@ -15,45 +20,54 @@ with open('static/conditions.yaml') as f:
     CONDITION_MAP = yaml.safe_load(f)
     SCORE_TO_ID = CONDITION_MAP['score_to_id']
     ID_TO_SCORE = CONDITION_MAP['id_to_score']
-
+print(ID_TO_SCORE)
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    conditions = fetch_conditions(days=3)
+    conditions = fetch_conditions(days=6)
     days, spots = parse_conditions(conditions)
     return render_template('index.html', days=days, spots=spots)
 
 
 def fetch_conditions(days):
-    attempts = 0
-    max_attempts = 3
-    rs = (grequests.get(URL.format(_id, days)) for _id in SPOTS._id)
-    while attempts < max_attempts:
-        try:
-            print(attempts)
-            results = grequests.map(rs)
-            return [json.loads(r.text)['data']['conditions'] for r in results]
-        except (AttributeError, KeyError, json.decoder.JSONDecodeError):
-            attempts += 1
-            # time.sleep(1)
+    retry = Retry(total=3, status_forcelist=[500, 502, 503, 504])
+    s = Session()
+    s.mount('http://', HTTPAdapter(max_retries=retry))
+    reqs = (grequests.get(URL.format(_id, days), session=s) for _id in SPOTS._id)
+    results = grequests.map(reqs)
+
+    return [(parse_url_params(r.request.url),
+             json.loads(r.text)['data']['conditions']) for r in results]
+
+
+def roundup(n):
+    """In Python 3 round(0.5) is 0. This function returns 1"""
+    return int(decimal.Decimal(n).quantize(decimal.Decimal('1'),
+                                           rounding=decimal.ROUND_HALF_UP))
+
+
+def parse_url_params(url):
+    params = dict(x.split('=') for x in urlparse(url).query.split('&'))
+    return params['spotId']
 
 
 def parse_conditions(data):
     forecast_list = []
-    for _id, spot_data in zip(SPOTS._id, data):
+    for _id, spot_data in data:
         for forecast in spot_data:
-            dt = datetime.fromtimestamp(forecast['timestamp'])
-            am = ID_TO_SCORE[forecast['am']['rating']]['score']
-            pm = ID_TO_SCORE[forecast['pm']['rating']]['score']
-            score = round((am + pm) / 2)
-            forecast_list.append({'_id': _id, 'date': dt, 'score': score})
+            score = roundup((ID_TO_SCORE[forecast['am']['rating']] +
+                             ID_TO_SCORE[forecast['pm']['rating']]) / 2)
+
+            print(_id, score, forecast['am']['rating'], forecast['pm']['rating'])
+            forecast_list.append({'_id': _id,
+                                  'date': forecast['timestamp'],
+                                  'score': score})
 
     forecasts = (pd.DataFrame(forecast_list)
                    .pivot_table(index='_id', values='score', columns='date'))
-
-    days = [dt.strftime('%a %-m/%-d') for dt in forecasts.columns]
+    days = [datetime.fromtimestamp(d).strftime('%a %-m/%-d') for d in forecasts.columns]
 
     forecasts = forecasts.apply(
         lambda x: [{**{'score': i}, **SCORE_TO_ID[round(i)]} for i in x], axis=1)
@@ -65,5 +79,6 @@ def parse_conditions(data):
 
 
 if __name__ == '__main__':
-    # app.jinja_env.globals.update(zip=zip)
+    from gevent import monkey
+    monkey.patch_all()
     app.run(debug=True, host='0.0.0.0')

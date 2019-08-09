@@ -5,32 +5,32 @@
   <h2>🌊Surf near NYC🌊</h2>
 </div>
 
-  <table id="table" class="table-striped compact" style="width:100%">
-    <thead>
+<table id="table" class="table table-sm table-responsive-sm">
+  <thead>
+    <tr>
+        <th>Spot</th>
+        <th>Drive</th>
+        {% for day in days %}
+          <th>{{ day }}</th>
+        {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for spot in spots %}
       <tr>
-          <th>Spot</th>
-          <th>Drive</th>
-          {% for day in days %}
-            <th>{{ day }}</th>
-          {% endfor %}
-      </tr>
-    </thead>
-    <tbody>
-      {% for spot in spots %}
-        <tr>
-          <td><a href="{{ spot['url'] }}" target="_blank" rel="noopener noreferrer">{{ spot['name'] }}</a></td>
-          <td data-order="{{ spot['duration'] }}">
-            <a href="http://www.google.com/maps/place/{{ spot['lat'] }},{{ spot['lon'] }}" target="_blank" rel="noopener noreferrer">{{ spot['duration_text'] }}</a>
+        <td><a href="{{ spot['url'] }}" target="_blank" rel="noopener noreferrer">{{ spot['name'] }}</a></td>
+        <td data-order="{{ spot['duration'] }}">
+          <a href="http://www.google.com/maps/place/{{ spot['lat'] }},{{ spot['lon'] }}" target="_blank" rel="noopener noreferrer">{{ spot['duration_text'] }}</a>
+        </td>
+        {% for forecast in spot['forecasts'] %}
+          <td data-order="{{ forecast['score']  }}">
+            <span class="{{ forecast['_id'] }}">{{ forecast['text'] }}</span>
           </td>
-          {% for forecast in spot['forecasts'] %}
-            <td data-order="{{ forecast['score']  }}">
-              <span class="{{ forecast['_id'] }}">{{ forecast['text'] }}</span>
-            </td>
-          {% endfor %}
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 <script>
 $(document).ready(function() {
