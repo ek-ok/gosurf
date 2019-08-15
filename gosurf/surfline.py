@@ -1,3 +1,4 @@
+import os
 import decimal
 import json
 from datetime import datetime
@@ -25,12 +26,13 @@ def parse_url_params(url):
 
 class SurfLine(object):
     def __init__(self, retry=3):
+        here = os.path.dirname(os.path.abspath(__file__))
         self.retry = retry
         self.url = "http://services.surfline.com/kbyg/spots/forecasts/conditions?spotId={}&days={}"
         self.session = self._create_session()
-        self.spots = pd.read_csv('static/spots.csv')
+        self.spots = pd.read_csv(os.path.join(here,'static/spots.csv'))
 
-        with open('static/conditions.yaml') as f:
+        with open(os.path.join(here,'static/conditions.yaml')) as f:
             condition_map = yaml.safe_load(f)
             self.score_to_id = condition_map['score_to_id']
             self.id_to_score = condition_map['id_to_score']
