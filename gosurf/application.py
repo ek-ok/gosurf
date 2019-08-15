@@ -22,4 +22,4 @@ def index():
 
 if __name__ == '__main__':
     monkey.patch_all()
-    application.run(host='0.0.0.0')
+    application.run(debug=True, host='0.0.0.0')
