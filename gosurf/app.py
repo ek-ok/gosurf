@@ -13,7 +13,7 @@ class SurfApp(Flask):
 application = SurfApp(__name__)
 
 
-@app.route('/')
+@application.route('/')
 def index():
     """Renter the index page back to front end"""
     days, spots = application.surfline.get_conditions()
