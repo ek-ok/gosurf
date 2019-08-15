@@ -10,16 +10,16 @@ class SurfApp(Flask):
         self.surfline = SurfLine()
 
 
-app = SurfApp(__name__)
+application = SurfApp(__name__)
 
 
 @app.route('/')
 def index():
     """Renter the index page back to front end"""
-    days, spots = app.surfline.get_conditions()
+    days, spots = application.surfline.get_conditions()
     return render_template('index.html', days=days, spots=spots)
 
 
 if __name__ == '__main__':
     monkey.patch_all()
-    app.run(debug=True, host='0.0.0.0')
+    application.run(host='0.0.0.0')
