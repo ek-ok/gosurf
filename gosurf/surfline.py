@@ -1,15 +1,19 @@
-import os
 import decimal
 import json
+import os
 from datetime import datetime
 
 import grequests
 import pandas as pd
 import yaml
+from gevent import monkey
 from requests import Session
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 from requests.utils import urlparse
+
+
+monkey.patch_all()
 
 
 def roundup(n):
