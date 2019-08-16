@@ -4,15 +4,15 @@ from gevent import monkey
 from .surfline import SurfLine
 
 
-application = SurfApp(__name__)
-monkey.patch_all()
-
 
 class SurfApp(Flask):
     def __init__(self, *args, **kwargs):
         super(SurfApp, self).__init__(*args, **kwargs)
         self.surfline = SurfLine()
 
+
+application = SurfApp(__name__)
+monkey.patch_all()
 
 @application.route('/')
 def index():
