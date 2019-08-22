@@ -3,46 +3,70 @@
 
 <div class="container">
   <h2>🏄Surf near NYC🗽</h2>
-  <p>Ride the best waves near NYC! 156 spots within 7h drive are sorted by the Surfline forecasts.</p>
+  <p>Ride the best waves near NYC! Surfline forecasts for 156 spots within 7h drive are sorted by the wave conditions for you.</p>
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
+<div class="accordion" id="conditions">
+  <button class="btn btn-primary btn-sm collapsed" type="button" data-toggle="collapse" data-target="#conditionMap" aria-expanded="false" aria-controls="conditionMap">
+   All Conditions
+  </button>
+    <div id="conditionMap" class="collapse"  data-parent="#conditions">
+      <div class="card-body">
+        <span class="lola">LL</span> = LOLA<br>
+        <span class="flat">FT</span> = FLAT<br>
+        <span class="very_poor">P -</span> = VERY POOR<br>
+        <span class="poor">PR</span> = POOR<br>
+        <span class="poor_to_fair">P+</span> = POOR TO FAIR<br>
+        <span class="fair">FR</span> = FAIR<br>
+        <span class="fair_to_good">F+</span> = FAIR TO GOOD<br>
+        <span class="good">GD</span> = GOOD<br>
+        <span class="very_good">G+</span> = VERY GOOD<br>
+        <span class="good_to_epic">E -</span> = GOOD TO EPIC<br>
+        <span class="epic">EP</span> = EPIC<br>
+      </div>
+    </div>
 </div>
-
+<br>
 <table id="table" class="table table-sm table-responsive-sm">
   <thead>
     <tr>
-        <th>Spot</th>
-        <th>Drive</th>
+        <th name="responsive-small">📍</th>
+        <th name="responsive-small">🚗</th>
         {% for day in days %}
-          <th>{{ day }}</th>
+        <th name="responsive-small">{{ day }}</th>
         {% endfor %}
     </tr>
   </thead>
   <tbody>
-    {% for spot in spots %}
-      <tr>
-        <td><a href="{{ spot['url'] }}" target="_blank" rel="noopener noreferrer">{{ spot['name'] }}</a></td>
-        <td data-order="{{ spot['duration'] }}">
-          <a href="http://www.google.com/maps/place/{{ spot['lat'] }},{{ spot['lon'] }}" target="_blank" rel="noopener noreferrer">{{ spot['duration_text'] }}</a>
-        </td>
-        {% for forecast in spot['forecasts'] %}
-          <td data-order="{{ forecast['score']  }}">
-            <span class="{{ forecast['_id'] }}">{{ forecast['text'] }}</span>
-          </td>
-        {% endfor %}
-      </tr>
-    {% endfor %}
+  {% for spot in spots %}
+    <tr>
+      <td name="responsive-small"><a href="{{ spot['url'] }}" target="_blank" rel="noopener noreferrer">{{ spot['name'] }}</a></td>
+      <td name="responsive-small" data-order="{{ spot['duration'] }}"><a href="http://www.google.com/maps/place/{{ spot['lat'] }},{{ spot['lon'] }}" target="_blank" rel="noopener noreferrer">{{ spot['duration_text'] }}</a></td>
+      {% for forecast in spot['forecasts'] %}
+      <td name="responsive-small" data-order="{{ forecast['score']  }}"><span class="{{ forecast['_id'] }}">{{ forecast['text'] }}</span></td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
   </tbody>
 </table>
 
 <script>
-$(document).ready(function() {
-    $('#table').DataTable( {
-      "info": false,
-      "searching": false,
-      "paging":   false,
-      "order": [[ 2, 'desc' ], [ 1, 'asc' ]],
-    } );
-} );
+
+$(document).ready(function(){
+  $('#table').DataTable({
+    "info": false,
+    "searching": false,
+    "paging":   false,
+    "order": [[ 2, 'desc' ], [ 1, 'asc' ]],
+  });
+});
+
+$(document).ready(function(){
+  if ($(window).width() < 500){
+    $('[name="responsive-small"]').addClass("small");
+  }
+});
+
 </script>
 
 {% endblock %}

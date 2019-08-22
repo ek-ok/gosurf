@@ -1,9 +1,6 @@
-from gevent import monkey
 from flask import Flask, render_template
 
 from .surfline import SurfLine
-
-monkey.patch_all()
 
 
 class SurfApp(Flask):
