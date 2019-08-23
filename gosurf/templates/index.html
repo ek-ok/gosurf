@@ -6,8 +6,7 @@
     <p>Ride the best waves near NYC! Surfline forecasts are shown in a single grid view!</p>
 
     <div class="accordion mb-3" id="conditions">
-      <button class="btn btn-primary btn-sm collapsed" type="button" data-toggle="collapse" data-target="#conditionMap"
-              aria-expanded="false" aria-controls="conditionMap">
+      <button class="btn btn-primary btn-sm collapsed" type="button" data-toggle="collapse" data-target="#conditionMap" aria-expanded="false" aria-controls="conditionMap">
         <i class="fa" aria-hidden="true"></i>
         Show forecast definitions
       </button>
@@ -47,7 +46,9 @@
           <a href="{{ spot['url'] }}" target="_blank" rel="noopener noreferrer">{{ spot['name'] }}</a>
         </td>
         <td data-name="responsive-small" data-order="{{ spot['duration'] }}">
-          <a href="http://www.google.com/maps/place/{{ spot['lat'] }},{{ spot['lon'] }}" target="_blank" rel="noopener noreferrer">{{ spot['duration_text'] }}</a>
+          <a href="http://www.google.com/maps/place/{{ spot['lat'] }},{{ spot['lon'] }}" target="_blank" rel="noopener noreferrer">
+            {{ spot['duration_text'] }}
+          </a>
         </td>
         {% for forecast in spot['forecasts'] %}
           <td data-name="responsive-small" data-order="{{ forecast['score'] }}">
