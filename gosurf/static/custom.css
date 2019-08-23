@@ -49,11 +49,20 @@
 
 .good_to_epic {
     background-color: #ff7700;
-    background-image: linear-gradient(to right, #ff7700 0%, #red 100%);
+    background-image: linear-gradient(to right, #ff7700 0%, #ff7700 100%);
     color: white;
 }
 
 .epic {
     background-color: red;
     color: white;
+}
+
+/* Font Azwesome icon for cllapse */
+[data-toggle="collapse"] .fa:before {
+    content: "\f139";
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+    content: "\f13a";
 }

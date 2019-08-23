@@ -1,75 +1,81 @@
 {% extends "base.html" %}
 {% block body %}
 
-<div class="container">
-  <h2>🏄Surf NYC🗽</h2>
-  <p>Ride the best waves near NYC! No more clicking many Surfline pages to compare spots. All 156 spots within 7h from NYC are shown in a single grid view!</p>
-  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="container">
+    <h2>🏄Surf NYC🗽</h2>
+    <p>Ride the best waves near NYC! Surfline forecasts are shown in a single grid view!</p>
+  </div>
 
-<div class="accordion" id="conditions">
-  <button class="btn btn-primary btn-sm collapsed" type="button" data-toggle="collapse" data-target="#conditionMap" aria-expanded="false" aria-controls="conditionMap">
-   Surfline Conditions
-  </button>
+  <div class="accordion" id="conditions">
+    <button class="btn btn-primary btn-sm collapsed" type="button" data-toggle="collapse" data-target="#conditionMap"
+            aria-expanded="false" aria-controls="conditionMap">
+      <i class="fa" aria-hidden="true"></i>
+      Show condition types
+    </button>
 
-  <div id="conditionMap" class="collapse"  data-parent="#conditions">
-    <div class="card-body">
-      <span class="epic">EP</span> = EPIC<br>
-      <span class="good_to_epic">E -</span> = GOOD TO EPIC<br>
-      <span class="very_good">G+</span> = VERY GOOD<br>
-      <span class="good">GD</span> = GOOD<br>
-      <span class="fair_to_good">F+</span> = FAIR TO GOOD<br>
-      <span class="fair">FR</span> = FAIR<br>
-      <span class="poor_to_fair">P+</span> = POOR TO FAIR<br>
-      <span class="poor">PR</span> = POOR<br>
-      <span class="very_poor">P -</span> = VERY POOR<br>
-      <span class="flat">FT</span> = FLAT<br>
-      <span class="lola">LL</span> = LOLA<br>
+    <div id="conditionMap" class="collapse" data-parent="#conditions">
+      <div class="card-body">
+        <span class="epic">EP</span> = EPIC<br>
+        <span class="good_to_epic">E -</span> = GOOD TO EPIC<br>
+        <span class="very_good">G+</span> = VERY GOOD<br>
+        <span class="good">GD</span> = GOOD<br>
+        <span class="fair_to_good">F+</span> = FAIR TO GOOD<br>
+        <span class="fair">FR</span> = FAIR<br>
+        <span class="poor_to_fair">P+</span> = POOR TO FAIR<br>
+        <span class="poor">PR</span> = POOR<br>
+        <span class="very_poor">P -</span> = VERY POOR<br>
+        <span class="flat">FT</span> = FLAT<br>
+        <span class="lola">LL</span> = LOLA<br>
+      </div>
     </div>
   </div>
-</div>
+  <br>
 
-<br>
-
-<table id="table" class="table table-sm table-responsive-sm">
-  <thead>
+  <table id="table" class="table table-sm table-responsive-sm">
+    <thead>
     <tr>
-        <th name="responsive-small">📍</th>
-        <th name="responsive-small">🚗</th>
-        {% for day in days %}
-        <th name="responsive-small">{{ day }}</th>
-        {% endfor %}
-    </tr>
-  </thead>
-  <tbody>
-  {% for spot in spots %}
-    <tr>
-      <td name="responsive-small"><a href="{{ spot['url'] }}" target="_blank" rel="noopener noreferrer">{{ spot['name'] }}</a></td>
-      <td name="responsive-small" data-order="{{ spot['duration'] }}"><a href="http://www.google.com/maps/place/{{ spot['lat'] }},{{ spot['lon'] }}" target="_blank" rel="noopener noreferrer">{{ spot['duration_text'] }}</a></td>
-      {% for forecast in spot['forecasts'] %}
-      <td name="responsive-small" data-order="{{ forecast['score']  }}"><span class="{{ forecast['_id'] }}">{{ forecast['text'] }}</span></td>
+      <th data-name="responsive-small">📍</th>
+      <th data-name="responsive-small">🚗</th>
+      {% for day in days %}
+        <th data-name="responsive-small">{{ day }}</th>
       {% endfor %}
     </tr>
-  {% endfor %}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    {% for spot in spots %}
+      <tr>
+        <td data-name="responsive-small">
+          <a href="{{ spot['url'] }}" target="_blank" rel="noopener noreferrer">{{ spot['name'] }}</a>
+        </td>
+        <td data-name="responsive-small" data-order="{{ spot['duration'] }}">
+          <a href="http://www.google.com/maps/place/{{ spot['lat'] }},{{ spot['lon'] }}" target="_blank" rel="noopener noreferrer">{{ spot['duration_text'] }}</a>
+        </td>
+        {% for forecast in spot['forecasts'] %}
+          <td data-name="responsive-small" data-order="{{ forecast['score'] }}">
+            <span class="{{ forecast['_id'] }}">{{ forecast['text'] }}</span>
+          </td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
 
-<script>
 
-$(document).ready(function(){
-  $('#table').DataTable({
-    "info": false,
-    "searching": false,
-    "paging":   false,
-    "order": [[ 2, 'desc' ], [ 1, 'asc' ]],
-  });
-});
+  <script>
+      $(document).ready(function () {
+          $('#table').DataTable({
+              "info": false,
+              "searching": false,
+              "paging": false,
+              "order": [[2, 'desc'], [1, 'asc']],
+          });
+      });
 
-$(document).ready(function(){
-  if ($(window).width() < 500){
-    $('[name="responsive-small"]').addClass("small");
-  }
-});
-
-</script>
+      $(document).ready(function () {
+          if ($(window).width() < 500) {
+              $('[data-name="responsive-small"]').addClass("small");
+          }
+      });
+  </script>
 
 {% endblock %}
