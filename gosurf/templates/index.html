@@ -1,35 +1,34 @@
 {% extends "base.html" %}
 {% block body %}
 
-  <div class="container">
+  <div class="m-3">
     <h2>🏄Surf NYC🗽</h2>
     <p>Ride the best waves near NYC! Surfline forecasts are shown in a single grid view!</p>
-  </div>
 
-  <div class="accordion" id="conditions">
-    <button class="btn btn-primary btn-sm collapsed" type="button" data-toggle="collapse" data-target="#conditionMap"
-            aria-expanded="false" aria-controls="conditionMap">
-      <i class="fa" aria-hidden="true"></i>
-      Show condition types
-    </button>
+    <div class="accordion mb-3" id="conditions">
+      <button class="btn btn-primary btn-sm collapsed" type="button" data-toggle="collapse" data-target="#conditionMap"
+              aria-expanded="false" aria-controls="conditionMap">
+        <i class="fa" aria-hidden="true"></i>
+        Show forecast definitions
+      </button>
 
-    <div id="conditionMap" class="collapse" data-parent="#conditions">
-      <div class="card-body">
-        <span class="epic">EP</span> = EPIC<br>
-        <span class="good_to_epic">E -</span> = GOOD TO EPIC<br>
-        <span class="very_good">G+</span> = VERY GOOD<br>
-        <span class="good">GD</span> = GOOD<br>
-        <span class="fair_to_good">F+</span> = FAIR TO GOOD<br>
-        <span class="fair">FR</span> = FAIR<br>
-        <span class="poor_to_fair">P+</span> = POOR TO FAIR<br>
-        <span class="poor">PR</span> = POOR<br>
-        <span class="very_poor">P -</span> = VERY POOR<br>
-        <span class="flat">FT</span> = FLAT<br>
-        <span class="lola">LL</span> = LOLA<br>
+      <div id="conditionMap" class="collapse" data-parent="#conditions">
+        <div class="card-body">
+          <span class="epic">EP</span> = EPIC<br>
+          <span class="good_to_epic">E -</span> = GOOD TO EPIC<br>
+          <span class="very_good">G+</span> = VERY GOOD<br>
+          <span class="good">GD</span> = GOOD<br>
+          <span class="fair_to_good">F+</span> = FAIR TO GOOD<br>
+          <span class="fair">FR</span> = FAIR<br>
+          <span class="poor_to_fair">P+</span> = POOR TO FAIR<br>
+          <span class="poor">PR</span> = POOR<br>
+          <span class="very_poor">P -</span> = VERY POOR<br>
+          <span class="flat">FT</span> = FLAT<br>
+          <span class="lola">LL</span> = LOLA<br>
+        </div>
       </div>
     </div>
   </div>
-  <br>
 
   <table id="table" class="table table-sm table-responsive-sm">
     <thead>
