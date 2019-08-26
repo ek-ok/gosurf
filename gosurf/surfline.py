@@ -16,7 +16,7 @@ def roundup(n):
 
 def timestamp_to_strftime(timestamp):
     dt = datetime.fromtimestamp(timestamp)
-    return '{} {}'.format(dt.strftime('%a')[0], dt.strftime('%-d'))
+    return '{} {}'.format(dt.strftime('%a')[:2], dt.strftime('%-d'))
 
 
 class SurfLine(object):
