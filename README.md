@@ -18,4 +18,5 @@ for all 157 spots that are within 7h drive.
 `gosurf` uses multiple components to show the best surf spots for surfers. 
 `gosurf` runs on AWS Elastic Beanstalk and calls [`surfline-api`](https://github.com/ek-ok/surfline-api)
 , which is a separate project runs on AWS Lambda to fetch Surfline 
-forecasts for all spots nearby NYC in an asynchronous fashion. 
+forecasts for all spots nearby NYC in an asynchronous fashion. Drive time 
+from NYC to each surf spot is calculated using Google Map API.  
