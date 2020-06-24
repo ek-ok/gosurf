@@ -1,4 +1,4 @@
-id_to_score:
+id_to_rating:
     null: 0
     LOLA: 0
     FLAT: 1
@@ -11,37 +11,37 @@ id_to_score:
     VERY_GOOD: 8
     GOOD_TO_EPIC: 9
     EPIC: 10
-score_to_id:
+rating_to_id:
     0:
-        _id: lola
-        text: LL
+        rating_id: lola
+        rating_nm: LL
     1:
-        _id: flat
-        text: FT
+        rating_id: flat
+        rating_nm: FT
     2:
-        _id: very_poor
-        text: P-
+        rating_id: very_poor
+        rating_nm: P-
     3:
-        _id: poor
-        text: PR
+        rating_id: poor
+        rating_nm: PR
     4:
-        _id: poor_to_fair
-        text: P+
+        rating_id: poor_to_fair
+        rating_nm: P+
     5:
-        _id: fair
-        text: FR
+        rating_id: fair
+        rating_nm: FR
     6:
-        _id: fair_to_good
-        text: F+
+        rating_id: fair_to_good
+        rating_nm: F+
     7:
-        _id: good
-        text: GD
+        rating_id: good
+        rating_nm: GD
     8:
-        _id: very_good
-        text: G+
+        rating_id: very_good
+        rating_nm: G+
     9:
-        _id: good_to_epic
-        text: E-
+        rating_id: good_to_epic
+        rating_nm: E-
     10:
-        _id: epic
-        text: EP
+        rating_id: epic
+        rating_nm: EP

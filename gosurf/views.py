@@ -12,8 +12,8 @@ class SurfApp(Flask):
 application = SurfApp(__name__)
 
 
-@application.route('/')
+@application.route("/")
 def index():
     """Renter the index page back to front end"""
     days, spots = application.surfline.get_conditions()
-    return render_template('index.html', days=days, spots=spots)
+    return render_template("index.html", days=days, spots=spots)

@@ -1,4 +1,4 @@
-_id,name,lat,lon,url,duration,duration_text
+spot_id,name,lat,lon,url,duration,duration_text
 5842041f4e65fad6a7708a21,Naval Jetties,38.767837,-75.082841,https://www.surfline.com/surf-report/naval-jetties/5842041f4e65fad6a7708a21,3.88,4h
 5842041f4e65fad6a7708a20,Gordons Pond,38.75034741676525,-75.08194048548125,https://www.surfline.com/surf-report/gordons-pond/5842041f4e65fad6a7708a20,3.99,4h
 5842041f4e65fad6a7708a1f,Dewey Beach,38.697657,-75.075951,https://www.surfline.com/surf-report/dewey-beach/5842041f4e65fad6a7708a1f,3.82,4h
