@@ -1,56 +1,94 @@
 {% extends "base.html" %}
 {% block body %}
 
- <div class="col-md-12">
+  <div class="m-3">
+    <h2>🏄Surf NYC🗽</h2>
+    <p>Ride the best waves near NYC! Surfline forecasts are shown in a single grid view!</p>
 
-  <div class="container">
-    <h2>🌊Surf near NYC🌊</h2>
-  </div>
+    <div class="d-flex justify-content-between">
+      <div class="accordion mb-3" id="conditions">
+        <button class="btn btn-primary btn-sm collapsed" type="button" data-toggle="collapse"
+                data-target="#conditionMap" aria-expanded="false" aria-controls="conditionMap">
+          <i class="fa" aria-hidden="true"></i>
+          Rating definitions
+        </button>
 
-    <table id="table" class="table-striped compact" style="width:100%">
-      <thead>
+        <div id="conditionMap" class="collapse alert alert-light" data-parent="#conditions">
+          <div class="card-body">
+            <span class="epic">EP</span> = EPIC<br>
+            <span class="good_to_epic">E -</span> = GOOD TO EPIC<br>
+            <span class="very_good">G+</span> = VERY GOOD<br>
+            <span class="good">GD</span> = GOOD<br>
+            <span class="fair_to_good">F+</span> = FAIR TO GOOD<br>
+            <span class="fair">FR</span> = FAIR<br>
+            <span class="poor_to_fair">P+</span> = POOR TO FAIR<br>
+            <span class="poor">PR</span> = POOR<br>
+            <span class="very_poor">P -</span> = VERY POOR<br>
+            <span class="flat">FT</span> = FLAT<br>
+            <span class="lola">LL</span> = LOLA<br>
+
+            <br>Numbers are wave heights taking the average of min and max.
+            <br>For example, 1-2ft = 1.5<br>
+
+            <br>Drive distance is the time on Google Map from LIC to each spot.<br>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mx-0">
+      <table id="table" class="table table-sm table-responsive-sm">
+        <thead>
         <tr>
-            <th>Spot</th>
-            <th>Drive Time</th>
-            {% for day in days %}
-              <th>{{ day }}</th>
-            {% endfor %}
+          <th data-name="responsive-small">📍</th>
+          <th data-name="responsive-small">🚗</th>
+          {% for day in days %}
+            <th data-name="responsive-small">{{ day }}</th>
+          {% endfor %}
         </tr>
-      </thead>
-      <tbody>
-
-          <tr>
-            <td><a href="https://www" target="_blank" rel="noopener noreferrer">Bethany Beach</a></td>
-            <td>4.07</td>
-            <td class="good-to-epic">100</td>
-            <td class="epic">100</td>
-            <td>35</td>
-          </tr>
-
+        </thead>
+        <tbody>
         {% for spot in spots %}
           <tr>
-            <td><a href="{{ spot['url'] }}" target="_blank" rel="noopener noreferrer">{{ spot['name'] }}</a></td>
-            <td>{{ spot['duration'] }}</td>
-            {% for score in spot['scores'] %}
-              <td>{{ score }}</td>
+            <td data-name="responsive-small">
+              <a href="{{ spot['url'] }}" target="_blank" rel="noopener noreferrer">{{ spot['name'] }}</a>
+            </td>
+            <td data-name="responsive-small" data-order="{{ spot['duration'] }}">
+              <a href="http://www.google.com/maps/place/{{ spot['lat'] }},{{ spot['lon'] }}" target="_blank"
+                 rel="noopener noreferrer">
+                {{ spot['duration_text'] }}
+              </a>
+            </td>
+            {% for forecast in spot['forecasts'] %}
+              <td data-name="responsive-small" data-order="{{ forecast['rating'] }}">
+                <span class="{{ forecast['rating_id'] }}">{{ forecast['rating_nm'] }}<br>
+                </span>{{ forecast['height_nm'] }}
+              </td>
             {% endfor %}
           </tr>
         {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
-      </tbody>
-    </table>
+  </div>
 
-</div>
+  <script>
+      $(document).ready(function () {
+          $('#table').DataTable({
+              "info": false,
+              "searching": false,
+              "paging": false,
+              "order": [[2, 'desc'], [1, 'asc']],
+          });
+      });
 
-<script>
-$(document).ready(function() {
-    $('#table').DataTable( {
-      "info": false,
-      "searching": false,
-      "paging":   false,
-      "order": [[ 2, 'desc' ], [ 1, 'asc' ]],
-    } );
-} );
-</script>
+      $(document).ready(function () {
+          if ($(window).width() < 500) {
+              $('[data-name="responsive-small"]').addClass("small");
+          }
+      });
+  </script>
 
 {% endblock %}
